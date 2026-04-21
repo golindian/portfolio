@@ -89,5 +89,28 @@ def index(request):
             {'idioma': 'Español', 'nivel': 'Nativo'},
             {'idioma': 'Inglés', 'nivel': 'Intermedio (B1)'},
         ],
+        'proyectos': [
+            {
+                'nombre': 'EvoSwarm AI',
+                'tecnologias': ['Python', 'Django', 'PostgreSQL', 'Docker'],
+                'descripcion': 'Sistema de entrenamiento evolutivo de modelos de lenguaje con gestión automática de VRAM.',
+                'imagen': 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800',
+                'link': '#'
+            },
+            {
+                'nombre': 'Gestión de Recursos Integrales',
+                'tecnologias': ['Django', 'JavaScript', 'Bootstrap'],
+                'descripcion': 'Plataforma administrativa para la gestión de proyectos fabriles y comerciales.',
+                'imagen': 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
+                'link': '#'
+            },
+            {
+                'nombre': 'Analizador de Remitos con IA',
+                'tecnologias': ['Python', 'Azure AI', 'HTMX'],
+                'descripcion': 'Herramienta de OCR y análisis automatizado de documentos para logística industrial.',
+                'imagen': 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800',
+                'link': '#'
+            },
+        ],
     }
     return render(request, 'landing/index.html', context)
