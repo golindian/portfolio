@@ -1,0 +1,838 @@
+2️⃣ Comandos para crear el proyecto django-admin startproject portfolio cd portfolio python manage.py startapp landing mkdir -p templates/landing static/css static/img 3️⃣ portfolio/settings.py (reemplaza todo) from pathlib import Path import os BASE_DIR=Path(__file__).resolve().parent.parent SECRET_KEY='django-insecure-cambia-esta-clave-en-produccion'
+DEBUG=True ALLOWED_HOSTS=['*'] INSTALLED_APPS=[ 'django.contrib.admin',
+'django.contrib.auth',
+'django.contrib.contenttypes',
+'django.contrib.sessions',
+'django.contrib.messages',
+'django.contrib.staticfiles',
+'landing',
+] MIDDLEWARE=[ 'django.middleware.security.SecurityMiddleware',
+'django.contrib.sessions.middleware.SessionMiddleware',
+'django.middleware.common.CommonMiddleware',
+'django.middleware.csrf.CsrfViewMiddleware',
+'django.contrib.auth.middleware.AuthenticationMiddleware',
+'django.contrib.messages.middleware.MessageMiddleware',
+'django.middleware.clickjacking.XFrameOptionsMiddleware',
+] ROOT_URLCONF='portfolio.urls'
+
+TEMPLATES=[ {
+
+    'BACKEND': 'django.template.backends.django.DjangoTemplates',
+    'DIRS': [BASE_DIR / 'templates'],
+    'APP_DIRS': True,
+    'OPTIONS': {
+        'context_processors': [ 'django.template.context_processors.debug',
+            'django.template.context_processors.request',
+            'django.contrib.auth.context_processors.auth',
+            'django.contrib.messages.context_processors.messages',
+            ],
+    }
+
+    ,
+}
+
+,
+] WSGI_APPLICATION='portfolio.wsgi.application'
+
+DATABASES= {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+LANGUAGE_CODE='es-ar'
+TIME_ZONE='America/Argentina/Cordoba'
+USE_I18N=True USE_TZ=True STATIC_URL='static/'
+STATICFILES_DIRS=[BASE_DIR / 'static'] STATIC_ROOT=BASE_DIR / 'staticfiles'
+
+DEFAULT_AUTO_FIELD='django.db.models.BigAutoField'
+4️⃣ portfolio/urls.py from django.contrib import admin from django.urls import path,
+include urlpatterns=[ path('admin/', admin.site.urls),
+path('', include('landing.urls')),
+] 5️⃣ landing/urls.py from django.urls import path from . import views app_name='landing'
+
+urlpatterns=[ path('', views.index, name='index'),
+] 6️⃣ landing/forms.py from django import forms class ContactForm(forms.Form): nombre=forms.CharField(max_length=80,
+    widget=forms.TextInput(attrs= {
+            'class': 'form-control', 'placeholder': 'Tu nombre'
+
+        })) email=forms.EmailField(widget=forms.EmailInput(attrs= {
+            'class': 'form-control', 'placeholder': 'tu@email.com'
+
+        })) mensaje=forms.CharField(widget=forms.Textarea(attrs= {
+            'class': 'form-control', 'rows': 4, 'placeholder': 'Contame tu proyecto...'
+
+        })) 7️⃣ landing/views.py from django.shortcuts import render,
+redirect from django.contrib import messages from .forms import ContactForm def index(request): form=ContactForm(request.POST or None) if request.method=='POST' and form.is_valid(): # Aquí podrías enviar email con send_mail messages.success(request, '¡Gracias! Tu mensaje fue enviado correctamente.') return redirect('landing:index') context= {
+
+    'form': form,
+    'perfil': {
+        'nombre': 'Gaspar Irrazabal',
+            'titulo': 'Técnico Programador · Full Stack Developer',
+            'resumen': ('Técnico Programador con enfoque multidisciplinario orientado a desarrollo '
+                'full stack. Actualmente profesor de secundaria en "Algoritmo y Programación", '
+                '"Entornos Digitales" y "Club de Ciencias". Estudiante avanzado del Técnico '
+                'Superior en Desarrollo de Software en la Universidad Provincial de Córdoba.'
+            ),
+            'email': 'gasparirrazabal@gmail.com',
+            'telefono': '+54 3544 464992',
+            'ubicacion': 'Córdoba, Argentina',
+    }
+
+    ,
+    'skills_tecnicas': [ {
+        'nombre': 'Python', 'nivel': 85, 'icono': 'bi-filetype-py'
+    }
+
+    ,
+    {
+    'nombre': 'Django', 'nivel': 80, 'icono': 'bi-server'
+}
+
+,
+{
+'nombre': 'HTML5 & CSS3', 'nivel': 90, 'icono': 'bi-filetype-html'
+}
+
+,
+{
+'nombre': 'JavaScript', 'nivel': 75, 'icono': 'bi-filetype-js'
+}
+
+,
+{
+'nombre': 'Bootstrap', 'nivel': 85, 'icono': 'bi-bootstrap'
+}
+
+,
+{
+'nombre': 'SQL / Bases de Datos', 'nivel': 75, 'icono': 'bi-database'
+}
+
+,
+{
+'nombre': 'Git & GitHub', 'nivel': 80, 'icono': 'bi-git'
+}
+
+,
+{
+'nombre': 'Integración de IA', 'nivel': 70, 'icono': 'bi-cpu'
+}
+
+,
+],
+'skills_blandas': [ 'Enseñanza técnica',
+'Planificación de proyectos',
+'Trabajo en equipo',
+'Resolución de conflictos',
+'Comunicación efectiva',
+'Aprendizaje continuo',
+'Diseño de apps modernas',
+'Supervisión multidisciplinaria',
+],
+'experiencias': [ {
+    'puesto': 'Profesor de Programación',
+        'empresa': 'Educación Secundaria',
+        'fechas': 'Actualidad',
+        'descripcion': ('Docente en las materias "Algoritmo y Programación", "Entornos Digitales" '
+            'y "Club de Ciencias". Formación de estudiantes en fundamentos de software.'
+        ),
+}
+
+,
+{
+'puesto': 'Técnico Gestión de Recursos Integrales',
+    'empresa': 'El Indio',
+    'fechas': 'Junio 2008 - Actualidad',
+    'descripcion': ('Diseño de estrategias para proyectos fabriles y comerciales. Elaboración de '
+        'informes técnicos, refrigeración industrial y soluciones integrales.'
+    ),
+}
+
+,
+{
+'puesto': 'Mantenimiento de Tragamonedas',
+    'empresa': 'Casino Mina Clavero',
+    'fechas': 'Experiencia previa',
+    'descripcion': ('Diagnóstico y reparación de máquinas IGT, BALLY y ARISTOCRAT. '
+        'Configuración de puertos, routers y placas de comunicación.'
+    ),
+}
+
+,
+],
+'educacion': [ {
+    'titulo': 'Técnico Superior en Desarrollo de Software',
+        'institucion': 'Universidad Provincial de Córdoba',
+        'fechas': '2023 - 2026',
+}
+
+,
+{
+'titulo': 'Técnico Programador',
+    'institucion': 'Instituto Superior Carlos María Carena',
+    'fechas': '2023 - 2024',
+}
+
+,
+{
+'titulo': 'Operador Office Full',
+    'institucion': 'Instituto IAC',
+    'fechas': '2001 - 2002',
+}
+
+,
+],
+'idiomas': [ {
+    'idioma': 'Español', 'nivel': 'Nativo'
+}
+
+,
+{
+'idioma': 'Inglés', 'nivel': 'Intermedio (B1)'
+}
+
+,
+],
+}
+
+return render(request, 'landing/index.html', context) 8️⃣ templates/landing/base.html {
+    % load static %
+}
+
+< !DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title> {
+    % block title %
+}
+
+Gaspar Irrazabal · Portfolio {
+    % endblock %
+}
+
+</title><meta name="description" content="Portfolio de Gaspar Irrazabal - Técnico Programador Full Stack">< !-- Bootstrap 5 --><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">< !-- Bootstrap Icons --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">< !-- Google Fonts --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">< !-- CSS propio --><link rel="stylesheet" href="{% static 'css/style.css' %}"></head><body><nav class="navbar navbar-expand-lg navbar-custom fixed-top"><div class="container"><a class="navbar-brand fw-bold" href="#hero">GI<span class="brand-dot">.</span></a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="nav"><ul class="navbar-nav ms-auto"><li class="nav-item"><a class="nav-link" href="#sobre-mi">Sobre mí</a></li><li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li><li class="nav-item"><a class="nav-link" href="#experiencia">Experiencia</a></li><li class="nav-item"><a class="nav-link" href="#educacion">Educación</a></li><li class="nav-item"><a class="nav-link btn btn-accent ms-lg-3" href="#contacto">Contacto</a></li></ul></div></div></nav> {
+    % block content %
+}
+
+    {
+    % endblock %
+}
+
+<footer class="footer"><div class="container text-center"><p class="mb-1">© 2025 Gaspar Irrazabal · Hecho con Django & Bootstrap</p><div><a href="mailto:gasparirrazabal@gmail.com"><i class="bi bi-envelope"></i></a><a href="tel:+543544464992"><i class="bi bi-telephone"></i></a></div></div></footer><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script></body></html>9️⃣ templates/landing/index.html {
+    % extends 'landing/base.html' %
+}
+
+    {
+    % load static %
+}
+
+    {
+    % block content %
+}
+
+< !-- HERO --><section id="hero" class="hero"><div class="container"><div class="row align-items-center"><div class="col-lg-7"><p class="hero-eyebrow">👋 Hola,
+soy</p><h1 class="hero-title"> {
+        {
+        perfil.nombre
+    }
+}
+
+</h1><h2 class="hero-subtitle"> {
+        {
+        perfil.titulo
+    }
+}
+
+</h2><p class="hero-desc"> {
+        {
+        perfil.resumen
+    }
+}
+
+</p><div class="hero-cta"><a href="#contacto" class="btn btn-accent btn-lg">Contactame</a><a href="#experiencia" class="btn btn-outline-light btn-lg">Ver experiencia</a></div></div><div class="col-lg-5 text-center mt-5 mt-lg-0"><div class="avatar-wrap"><div class="avatar-ring"></div><div class="avatar-initials">GI</div></div></div></div></div></section>< !-- SOBRE MÍ --><section id="sobre-mi" class="section"><div class="container"><h3 class="section-title">Sobre mí</h3><div class="row g-4"><div class="col-md-4"><div class="info-card"><i class="bi bi-envelope-fill"></i><h5>Email</h5><a href="mailto:{{ perfil.email }}"> {
+        {
+        perfil.email
+    }
+}
+
+</a></div></div><div class="col-md-4"><div class="info-card"><i class="bi bi-telephone-fill"></i><h5>Teléfono</h5><a href="tel:{{ perfil.telefono }}"> {
+        {
+        perfil.telefono
+    }
+}
+
+</a></div></div><div class="col-md-4"><div class="info-card"><i class="bi bi-geo-alt-fill"></i><h5>Ubicación</h5><p> {
+        {
+        perfil.ubicacion
+    }
+}
+
+</p></div></div></div></div></section>< !-- SKILLS --><section id="skills" class="section section-alt"><div class="container"><h3 class="section-title">Skills Técnicas</h3><div class="row g-4"> {
+    % for s in skills_tecnicas %
+}
+
+<div class="col-md-6"><div class="skill-item"><div class="d-flex justify-content-between align-items-center mb-2"><span><i class="bi {{ s.icono }} me-2"></i> {
+        {
+        s.nombre
+    }
+}
+
+</span><span class="skill-percent"> {
+        {
+        s.nivel
+    }
+}
+
+%</span></div><div class="progress"><div class="progress-bar" style="width: {{ s.nivel }}%"></div></div></div></div> {
+    % endfor %
+}
+
+</div><h4 class="mt-5 mb-3 text-center">Soft Skills</h4><div class="text-center"> {
+    % for s in skills_blandas %
+}
+
+<span class="badge-soft"> {
+        {
+        s
+    }
+}
+
+</span> {
+    % endfor %
+}
+
+</div></div></section>< !-- EXPERIENCIA --><section id="experiencia" class="section"><div class="container"><h3 class="section-title">Experiencia</h3><div class="timeline"> {
+    % for e in experiencias %
+}
+
+<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><span class="timeline-date"> {
+        {
+        e.fechas
+    }
+}
+
+</span><h5> {
+        {
+        e.puesto
+    }
+}
+
+</h5><p class="timeline-company"> {
+        {
+        e.empresa
+    }
+}
+
+</p><p> {
+        {
+        e.descripcion
+    }
+}
+
+</p></div></div> {
+    % endfor %
+}
+
+</div></div></section>< !-- EDUCACIÓN --><section id="educacion" class="section section-alt"><div class="container"><h3 class="section-title">Educación</h3><div class="row g-4"> {
+    % for ed in educacion %
+}
+
+<div class="col-md-4"><div class="edu-card"><i class="bi bi-mortarboard-fill"></i><h5> {
+        {
+        ed.titulo
+    }
+}
+
+</h5><p class="edu-institution"> {
+        {
+        ed.institucion
+    }
+}
+
+</p><span class="edu-date"> {
+        {
+        ed.fechas
+    }
+}
+
+</span></div></div> {
+    % endfor %
+}
+
+</div><h4 class="mt-5 mb-3 text-center">Idiomas</h4><div class="row justify-content-center g-3"> {
+    % for i in idiomas %
+}
+
+<div class="col-md-3"><div class="lang-card"><strong> {
+        {
+        i.idioma
+    }
+}
+
+</strong><span> {
+        {
+        i.nivel
+    }
+}
+
+</span></div></div> {
+    % endfor %
+}
+
+</div></div></section>< !-- CONTACTO --><section id="contacto" class="section"><div class="container"><h3 class="section-title">Contacto</h3><div class="row justify-content-center"><div class="col-lg-7"> {
+    % if messages %
+}
+
+    {
+    % for m in messages %
+}
+
+<div class="alert alert-success"> {
+        {
+        m
+    }
+}
+
+</div> {
+    % endfor %
+}
+
+    {
+    % endif %
+}
+
+<form method="post" class="contact-form"> {
+    % csrf_token %
+}
+
+<div class="mb-3"><label class="form-label">Nombre</label> {
+        {
+        form.nombre
+    }
+}
+
+</div><div class="mb-3"><label class="form-label">Email</label> {
+        {
+        form.email
+    }
+}
+
+</div><div class="mb-3"><label class="form-label">Mensaje</label> {
+        {
+        form.mensaje
+    }
+}
+
+</div><button type="submit" class="btn btn-accent btn-lg w-100">Enviar mensaje</button></form></div></div></div></section> {
+    % endblock %
+}
+
+🔟 static/css/style.css:root {
+    --bg: #0f1419;
+    --bg-alt: #151b22;
+    --card: #1c2430;
+    --text: #e6edf3;
+    --muted: #8b97a8;
+    --accent: #ff6b35;
+    --accent-soft: #ffb299;
+    --border: #2a3340;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Manrope', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: -0.02em;
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: 0.25s;
+}
+
+a:hover {
+    color: var(--accent-soft);
+}
+
+/* NAV */
+.navbar-custom {
+    background: rgba(15, 20, 25, 0.85);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.9rem 0;
+}
+
+.navbar-custom .navbar-brand {
+    color: var(--text);
+    font-size: 1.5rem;
+}
+
+.brand-dot {
+    color: var(--accent);
+}
+
+.navbar-custom .nav-link {
+    color: var(--muted);
+    font-weight: 600;
+    padding: 0.5rem 1rem !important;
+}
+
+.navbar-custom .nav-link:hover {
+    color: var(--text);
+}
+
+.btn-accent {
+    background: var(--accent);
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    padding: 0.7rem 1.8rem;
+    border-radius: 999px;
+    transition: 0.3s;
+}
+
+.btn-accent:hover {
+    background: #e55a2b;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.btn-outline-light {
+    border-radius: 999px;
+    padding: 0.7rem 1.8rem;
+    font-weight: 600;
+}
+
+/* HERO */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 80px;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(255, 107, 53, 0.12), transparent 40%),
+        radial-gradient(circle at 85% 80%, rgba(255, 107, 53, 0.08), transparent 40%),
+        var(--bg);
+}
+
+.hero-eyebrow {
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.hero-title {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    color: var(--muted);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+}
+
+.hero-desc {
+    color: var(--muted);
+    font-size: 1.1rem;
+    max-width: 580px;
+    margin-bottom: 2rem;
+}
+
+.hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.avatar-wrap {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, var(--accent), transparent, var(--accent));
+    animation: spin 12s linear infinite;
+}
+
+.avatar-ring::after {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    border-radius: 50%;
+    background: var(--bg);
+}
+
+.avatar-initials {
+    position: relative;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 5rem;
+    font-weight: 700;
+    color: var(--accent);
+    z-index: 2;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* SECCIONES */
+.section {
+    padding: 6rem 0;
+}
+
+.section-alt {
+    background: var(--bg-alt);
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 3rem;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 60px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 2px;
+}
+
+/* CARDS */
+.info-card,
+.edu-card,
+.lang-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    transition: 0.3s;
+    height: 100%;
+}
+
+.info-card:hover,
+.edu-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--accent);
+}
+
+.info-card i,
+.edu-card i {
+    font-size: 2rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.info-card h5,
+.edu-card h5 {
+    margin-bottom: 0.5rem;
+}
+
+.edu-institution {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+}
+
+.edu-date {
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.lang-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.lang-card span {
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+/* SKILLS */
+.skill-item {
+    margin-bottom: 0.5rem;
+}
+
+.skill-percent {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.progress {
+    background: var(--card);
+    height: 10px;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+    border-radius: 999px;
+    transition: width 1.5s ease;
+}
+
+.badge-soft {
+    display: inline-block;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.5rem 1.2rem;
+    border-radius: 999px;
+    margin: 0.3rem;
+    font-size: 0.9rem;
+    transition: 0.25s;
+}
+
+.badge-soft:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* TIMELINE */
+.timeline {
+    position: relative;
+    padding-left: 2rem;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 2.5rem;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -1.6rem;
+    top: 8px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.2);
+}
+
+.timeline-content {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.5rem;
+}
+
+.timeline-date {
+    display: inline-block;
+    background: rgba(255, 107, 53, 0.12);
+    color: var(--accent);
+    padding: 0.2rem 0.8rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-company {
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+}
+
+/* FORM */
+.contact-form {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2.5rem;
+}
+
+.contact-form .form-control {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.8rem 1rem;
+    border-radius: 10px;
+}
+
+.contact-form .form-control:focus {
+    background: var(--bg);
+    border-color: var(--accent);
+    color: var(--text);
+    box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.15);
+}
+
+.contact-form .form-label {
+    color: var(--muted);
+    font-weight: 600;
+}
+
+/* FOOTER */
+.footer {
+    background: var(--bg-alt);
+    border-top: 1px solid var(--border);
+    padding: 2rem 0;
+    color: var(--muted);
+}
+
+.footer a {
+    color: var(--muted);
+    margin: 0 0.8rem;
+    font-size: 1.3rem;
+}
+
+.footer a:hover {
+    color: var(--accent);
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: 4rem 0;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+}
