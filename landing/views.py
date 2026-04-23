@@ -17,9 +17,8 @@ def index(request):
             'resumen': (
                 'Técnico Programador con enfoque multidisciplinario orientado a desarrollo '
                 'full stack. Actualmente profesor de secundaria en "Algoritmo y Programación", '
-                '"Entornos Digitales" y "Club de Ciencias". Estudiante avanzado del Técnico '
-                'Superior en Desarrollo de Software en la Universidad Provincial de Córdoba.'
-            ),
+                '"Entornos Digitales" y "Club de Ciencias". '
+                'Técnico Superior en Desarrollo de Software'),
             'email': 'gasparirrazabal@gmail.com',
             'telefono': '+54 3544 464992',
             'ubicacion': 'Córdoba, Argentina',
@@ -89,13 +88,62 @@ def index(request):
             {'idioma': 'Español', 'nivel': 'Nativo'},
             {'idioma': 'Inglés', 'nivel': 'Intermedio (B1)'},
         ],
-        'proyectos': [
+          'proyectos': [
             {
+                'slug': 'evoswarm-ai',
                 'nombre': 'EvoSwarm AI',
-                'tecnologias': ['Python', 'Django', 'PostgreSQL', 'Docker'],
-                'descripcion': 'Sistema de entrenamiento evolutivo de modelos de lenguaje con gestión automática de VRAM.',
-                'imagen': 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800',
-                'link': '#'
+                'subtitulo': 'Enjambre Evolutivo de Modelos LLM Locales',
+                'periodo': '2025 — En desarrollo',
+                'rol': 'Arquitecto & Full Stack Developer',
+                'thumb_gradient': 'linear-gradient(135deg, #0ea5e9 0%, #10b981 100%)',
+                'tags_cortos': ['IA', 'FastAPI', 'LLM', 'RAG'],
+                'descripcion_breve': (
+                    'Sistema autónomo de IA que orquesta múltiples LLMs locales en hardware '
+                    'limitado (GPU 8GB VRAM). Los modelos colaboran, se auto-evalúan y mejoran '
+                    'mediante ciclos evolutivos controlados con memoria persistente por usuario.'
+                ),
+                'problema': (
+                    'Ejecutar múltiples LLMs grandes en hardware doméstico sin depender de APIs '
+                    'en la nube, manteniendo calidad, privacidad y capacidad de adaptación.'
+                ),
+                'caracteristicas': [
+                    {'icono': 'bi-diagram-3', 'titulo': 'Orquestación multi-modelo', 'desc': 'Planner, Executor, Critic y Memory Manager coordinan 5 LLMs especializados.'},
+                    {'icono': 'bi-arrow-repeat', 'titulo': 'Ciclo evolutivo controlado', 'desc': 'Datasets sintéticos + entrenamiento LoRA semanal con benchmarks fijos.'},
+                    {'icono': 'bi-search', 'titulo': 'RAG híbrido avanzado', 'desc': 'Búsqueda semántica + keyword con re-ranking y caché por usuario.'},
+                    {'icono': 'bi-cpu', 'titulo': 'Gestión dinámica de VRAM', 'desc': 'Carga/descarga bajo demanda con cuantización 4-bit GGUF.'},
+                    {'icono': 'bi-bar-chart', 'titulo': 'Observabilidad completa', 'desc': 'Dashboard de latencia, uso de recursos y calidad de respuestas.'},
+                ],
+                'tecnologias': [
+                    {'nombre': 'FastAPI', 'icono': 'bi-lightning-charge'},
+                    {'nombre': 'Ollama', 'icono': 'bi-box'},
+                    {'nombre': 'ChromaDB', 'icono': 'bi-database'},
+                    {'nombre': 'PostgreSQL', 'icono': 'bi-hdd-stack'},
+                    {'nombre': 'Llama 3 / Gemma / Qwen', 'icono': 'bi-robot'},
+                    {'nombre': 'LoRA / PEFT', 'icono': 'bi-sliders'},
+                    {'nombre': 'Docker', 'icono': 'bi-boxes'},
+                    {'nombre': 'Kubernetes', 'icono': 'bi-hdd-network'},
+                ],
+                'demo_url': '#',
+                'repo_url': '#',
+                'aporte': [
+                    'Diseño de la arquitectura modular (Orquestador + 5 modelos especializados).',
+                    'Implementación del pipeline RAG (chunking semántico, embeddings, retriever híbrido).',
+                    'Módulo de routing inteligente según complejidad de tarea y costo computacional.',
+                    'Scheduler de recursos GPU con carga/descarga dinámica de modelos.',
+                    'Pipeline automatizado de entrenamiento LoRA con versionado y rollback.',
+                    'Dockerización y orquestación con Docker Compose (fase 1) y Kubernetes (fase 2).',
+                ],
+                'resultados': [
+                    {'metrica': '8GB', 'label': 'VRAM máxima utilizada (GPU RTX 4060)'},
+                    {'metrica': '5', 'label': 'Modelos LLM coordinados simultáneamente'},
+                    {'metrica': '100%', 'label': 'Procesamiento local, sin dependencia cloud'},
+                    {'metrica': '4-bit', 'label': 'Cuantización GGUF para optimización'},
+                ],
+                'aprendizajes': (
+                    'Comprobé que la inteligencia de un sistema de IA depende más de la orquestación '
+                    'que del tamaño de los modelos. La modularidad (Planner / Executor / Critic) y la '
+                    'evaluación continua son clave para evitar drift y garantizar mejora sostenida.'
+                ),
             },
             {
                 'nombre': 'Gestión de Recursos Integrales',

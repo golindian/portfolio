@@ -1,0 +1,98 @@
+<div class="project-modal" id="modal-{{ p.slug }}" aria-hidden="true" role="dialog">
+    <div class="project-modal-backdrop" data-close></div>
+    <div class="project-modal-dialog" role="document">
+        <button class="project-modal-close" data-close aria-label="Cerrar">
+            <i class="bi bi-x-lg"></i>
+        </button>
+
+        <!-- 1. Encabezado -->
+        <header class="pm-header" style="background: {{ p.thumb_gradient }};">
+            <div class="pm-header-inner">
+                <span class="pm-periodo">{{ p.periodo }}</span>
+                <h2>{{ p.nombre }}</h2>
+                <p class="pm-subtitulo">{{ p.subtitulo }}</p>
+                <span class="pm-rol"><i class="bi bi-person-workspace me-1"></i>{{ p.rol }}</span>
+            </div>
+        </header>
+
+        <div class="pm-content">
+
+            <!-- 2. Descripción -->
+            <section class="pm-section">
+                <h4><span class="pm-num">01</span> Descripción</h4>
+                <p>{{ p.descripcion_breve }}</p>
+                <div class="pm-callout">
+                    <strong>Problema que resuelve:</strong> {{ p.problema }}
+                </div>
+            </section>
+
+            <!-- 3. Características -->
+            <section class="pm-section">
+                <h4><span class="pm-num">02</span> Características principales</h4>
+                <div class="pm-features">
+                    {% for f in p.caracteristicas %}
+                    <div class="pm-feature">
+                        <i class="bi {{ f.icono }}"></i>
+                        <div>
+                            <strong>{{ f.titulo }}</strong>
+                            <span>{{ f.desc }}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <!-- 4. Tecnologías -->
+            <section class="pm-section">
+                <h4><span class="pm-num">03</span> Tecnologías utilizadas</h4>
+                <div class="pm-tech-grid">
+                    {% for t in p.tecnologias %}
+                    <span class="pm-tech"><i class="bi {{ t.icono }}"></i>{{ t.nombre }}</span>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <!-- 5. Demo -->
+            <section class="pm-section">
+                <h4><span class="pm-num">04</span> Capturas &amp; demo</h4>
+                <div class="pm-demo-placeholder">
+                    <i class="bi bi-image"></i>
+                    <span>Espacio reservado para captura / video del sistema</span>
+                </div>
+                <div class="pm-actions">
+                    <a href="{{ p.demo_url }}" class="pm-btn pm-btn-primary" target="_blank" rel="noopener">
+                        <i class="bi bi-play-circle"></i> Ver demo
+                    </a>
+                    <a href="{{ p.repo_url }}" class="pm-btn pm-btn-ghost" target="_blank" rel="noopener">
+                        <i class="bi bi-github"></i> Repositorio GitHub
+                    </a>
+                </div>
+            </section>
+
+            <!-- 6. Aporte -->
+            <section class="pm-section">
+                <h4><span class="pm-num">05</span> Mi aporte específico</h4>
+                <ul class="pm-list">
+                    {% for a in p.aporte %}
+                    <li><i class="bi bi-check2-circle"></i>{{ a }}</li>
+                    {% endfor %}
+                </ul>
+            </section>
+
+            <!-- 7. Resultados -->
+            <section class="pm-section">
+                <h4><span class="pm-num">06</span> Resultados &amp; aprendizajes</h4>
+                <div class="pm-metrics">
+                    {% for r in p.resultados %}
+                    <div class="pm-metric">
+                        <strong>{{ r.metrica }}</strong>
+                        <span>{{ r.label }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+                <p class="pm-aprendizaje">{{ p.aprendizajes }}</p>
+            </section>
+
+        </div>
+    </div>
+</div>

@@ -20,7 +20,8 @@
             <div class="col-lg-6 mt-5 mt-lg-0" data-aos="fade-left">
                 <div class="avatar-container">
                     <div class="avatar-shape"></div>
-                    <img src="{% static 'img/Generated Image April 21, 2026 - 12_31AM.png' %}" alt="{{ perfil.nombre }}" class="avatar-img shadow-lg">
+                    <img src="{% static 'img/Generated Image April 21, 2026 - 12_31AM.png' %}" alt="{{ perfil.nombre }}"
+                        class="avatar-img shadow-lg">
                 </div>
             </div>
         </div>
@@ -62,37 +63,39 @@
 </section>
 
 <!-- PROYECTOS -->
-<section id="proyectos" class="section bg-alt">
+<section id="proyectos" class="section section-alt">
     <div class="container">
-        <div class="row mb-5">
-            <div class="col-12" data-aos="fade-up">
-                <h2 class="section-title">Proyectos Destacados</h2>
-            </div>
-        </div>
+        <h3 class="section-title">Proyectos Destacados</h3>
         <div class="row g-4">
             {% for p in proyectos %}
-            <div class="col-md-4" data-aos="zoom-in-up" data-aos-delay="{{ forloop.counter }}00">
-                <div class="project-card">
-                    <div class="project-img">
-                        <img src="{{ p.imagen }}" alt="{{ p.nombre }}">
+            <div class="col-md-6 col-lg-4">
+                <article class="project-card" data-project="{{ p.slug }}">
+                    <div class="project-thumb" style="background: {{ p.thumb_gradient }};">
+                        <i class="bi bi-diagram-3-fill"></i>
                     </div>
-                    <div class="project-content">
-                        <div class="mb-2">
-                            {% for tech in p.tecnologias %}
-                            <span class="tech-tag">{{ tech }}</span>
+                    <div class="project-body">
+                        <h5>{{ p.nombre }}</h5>
+                        <p class="project-subtitle">{{ p.subtitulo }}</p>
+                        <div class="project-tags">
+                            {% for t in p.tags_cortos %}
+                            <span class="project-tag">{{ t }}</span>
                             {% endfor %}
                         </div>
-                        <h4 class="mb-3">{{ p.nombre }}</h4>
-                        <p class="text-muted small mb-4">{{ p.descripcion }}</p>
-                        <a href="{{ p.link }}" class="btn btn-sm btn-accent">Ver detalles <i class="bi bi-arrow-right ms-1"></i></a>
+                        <button type="button" class="btn-ver-detalle" data-target="modal-{{ p.slug }}">
+                            Ver detalle <i class="bi bi-arrow-right"></i>
+                        </button>
                     </div>
-                </div>
+                </article>
             </div>
             {% endfor %}
         </div>
     </div>
 </section>
 
+<!-- MODALES DE PROYECTOS -->
+{% for p in proyectos %}
+{% include 'landing/_project_modal.html' with p=p %}
+{% endfor %}
 <!-- SKILLS -->
 <section id="skills" class="section">
     <div class="container">
@@ -108,7 +111,8 @@
                     <i class="bi {{ s.icono }} fs-1 text-accent mb-3 d-block"></i>
                     <h5 class="mb-2">{{ s.nombre }}</h5>
                     <div class="progress mt-3">
-                        <div class="progress-bar" role="progressbar" style="width: {{ s.nivel }}%" aria-valuenow="{{ s.nivel }}" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar" role="progressbar" style="width: {{ s.nivel }}%"
+                            aria-valuenow="{{ s.nivel }}" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <span class="small text-muted mt-2 d-block">{{ s.nivel }}% Mastery</span>
                 </div>
@@ -121,7 +125,8 @@
                 <h4 class="mb-4">Estrategias y Soft Skills</h4>
                 <div class="d-flex flex-wrap justify-content-center gap-2">
                     {% for s in skills_blandas %}
-                    <span class="badge rounded-pill bg-alt text-muted px-4 py-2 border" data-aos="fade-in" data-aos-delay="{{ forloop.counter }}0">
+                    <span class="badge rounded-pill bg-alt text-muted px-4 py-2 border" data-aos="fade-in"
+                        data-aos-delay="{{ forloop.counter }}0">
                         {{ s }}
                     </span>
                     {% endfor %}
@@ -185,16 +190,17 @@
             <div class="col-lg-8" data-aos="fade-up">
                 <div class="text-center mb-5">
                     <h2 class="section-title">¿Hablamos?</h2>
-                    <p class="text-muted">Si tienes una propuesta o simplemente quieres saludar, mi buzón siempre está abierto.</p>
+                    <p class="text-muted">Si tienes una propuesta o simplemente quieres saludar, mi buzón siempre está
+                        abierto.</p>
                 </div>
-                
+
                 <div class="contact-form p-4 p-md-5 shadow-sm border">
                     {% if messages %}
-                        {% for m in messages %}
-                        <div class="alert alert-success border-0 shadow-sm mb-4">{{ m }}</div>
-                        {% endfor %}
+                    {% for m in messages %}
+                    <div class="alert alert-success border-0 shadow-sm mb-4">{{ m }}</div>
+                    {% endfor %}
                     {% endif %}
-                    
+
                     <form method="post">
                         {% csrf_token %}
                         <div class="row g-4">
@@ -211,7 +217,8 @@
                                 {{ form.mensaje }}
                             </div>
                             <div class="col-12 mt-4">
-                                <button type="submit" class="btn btn-accent btn-lg w-100 py-3 fw-bold">ENVIAR MENSAJE</button>
+                                <button type="submit" class="btn btn-accent btn-lg w-100 py-3 fw-bold">ENVIAR
+                                    MENSAJE</button>
                             </div>
                         </div>
                     </form>
