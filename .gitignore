@@ -1,33 +1,71 @@
-
-# Created by venv; see https://docs.python.org/3/library/venv.html
-# Ignora la carpeta .vscode que contiene la configuración del proyecto
-# para visual code.
-
-.vscode/
-.zed/
-# Ignora la carpeta lib y Scripts del entorno virtual que al instalar los
-# requerimientos se instalará en ese equipo.
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
 lib/
-Scripts/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
 
-# Ignora __pycache__ en cualquier carpeta del proyecto.
-**/__pycache__
+# --- Django ---
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+*.sqlite3
+staticfiles/
+media/
+**/backups/
 
-# Ignora el archivo de configuración de la ubicación del entorno virtual.
-# Este archivo se crea cuando se crea el entorno virtual.
-pyvenv.cfg
-
-# Ignora carpetas de entorno virtual
+# --- Entornos Virtuales ---
 .venv/
 venv/
-# archivo local de cloude
+ENV/
+env/
+pyvenv.cfg
+pip-delete-this-directory.txt
+Scripts/
+
+# --- IDEs y Editores ---
+.vscode/
+.zed/
+.idea/
+*.swp
+*.swo
+.project
+.pydevproject
+.settings/
+
+# --- Sistema Operativo ---
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+.DS_Store
+
+# --- Archivos Específicos del Proyecto ---
 continue.config.json
 backup_completo.json
-#.gitignore
-db.sqlite3
-*.sqlite3
-
-**/backups
 .env
 .env.production
+.env.local
 
+# --- Otros ---
+*.bak
+*.tmp
+*.temp

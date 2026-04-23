@@ -146,18 +146,126 @@ def index(request):
                 ),
             },
             {
-                'nombre': 'Gestión de Recursos Integrales',
-                'tecnologias': ['Django', 'JavaScript', 'Bootstrap'],
-                'descripcion': 'Plataforma administrativa para la gestión de proyectos fabriles y comerciales.',
-                'imagen': 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
-                'link': '#'
+                'slug': 'milac-cream',
+                'nombre': 'Sistema Milac Cream',
+                'subtitulo': 'Gestión integral para fábrica de helados',
+                'periodo': 'Marzo 2024 — Mayo 2026',
+                'rol': 'Full Stack Developer · Equipo de 3',
+                'thumb_gradient': 'linear-gradient(135deg, #ec4899 0%, #f59e0b 100%)',
+                'tags_cortos': ['Django', 'PostgreSQL', 'HTMX', 'Docker'],
+                'descripcion_breve': (
+                    'Sistema integral que informatiza los procesos de manufactura, distribución, '
+                    'ventas y control de inventario de la fábrica Milac Cream. Integra 12 módulos '
+                    'especializados con dashboards en tiempo real, auditoría completa y un agente '
+                    'de IA para análisis y recomendaciones.'
+                ),
+                'problema': (
+                    'La fábrica operaba con procesos manuales que generaban faltantes en puntos de '
+                    'venta, pérdida de trazabilidad de lotes, y falta de visibilidad sobre los '
+                    'niveles óptimos de producción y ventas.'
+                ),
+                'caracteristicas': [
+                    {'icono': 'bi-box-seam', 'titulo': 'Inventario por lote', 'desc': 'Stock con fechas de vencimiento, alertas de seguridad y extracción automática para producción y entregas.'},
+                    {'icono': 'bi-journal-text', 'titulo': 'Recetas versionadas', 'desc': 'Versionado de recetas con clonación, ingredientes categorizados y descuento automático de insumos.'},
+                    {'icono': 'bi-cart-check', 'titulo': 'Pedidos & entregas', 'desc': 'CRUD completo con sincronización automática de estados entre entregas e inventario.'},
+                    {'icono': 'bi-graph-up-arrow', 'titulo': '7 KPIs en tiempo real', 'desc': 'Dashboard de fabricación con gráficos de distribución, tendencias mensuales y tasa de cumplimiento.'},
+                    {'icono': 'bi-robot', 'titulo': 'Agente IA integrado', 'desc': 'Módulo con API de Anthropic para análisis inteligente y recomendaciones operativas.'},
+                ],
+                'tecnologias': [
+                    {'nombre': 'Django 4.2', 'icono': 'bi-filetype-py'},
+                    {'nombre': 'Python 3.12', 'icono': 'bi-code-slash'},
+                    {'nombre': 'PostgreSQL 16', 'icono': 'bi-database'},
+                    {'nombre': 'Bootstrap 5', 'icono': 'bi-bootstrap'},
+                    {'nombre': 'HTMX', 'icono': 'bi-arrow-left-right'},
+                    {'nombre': 'Docker Compose', 'icono': 'bi-boxes'},
+                    {'nombre': 'Gunicorn + Nginx', 'icono': 'bi-server'},
+                    {'nombre': 'Anthropic API', 'icono': 'bi-robot'},
+                    {'nombre': 'django-simple-history', 'icono': 'bi-clock-history'},
+                    {'nombre': 'Supervisor / systemd', 'icono': 'bi-gear-wide-connected'},
+                ],
+                'demo_url': '#',
+                'repo_url': 'https://gitlab.com/golindian/sistema-milac-cream.git',
+                'aporte': [
+                    'Diseño de modelos de Inventario con stock por lote, trazabilidad y extracciones automáticas.',
+                    'Implementación del módulo Pedidos: CRUD, dashboard con KPIs y creación automática de stock al recibir.',
+                    'Desarrollo del módulo Entregas con descuento automático de inventario y sincronización de estados.',
+                    'Integración de django-simple-history para auditoría completa sobre modelos críticos.',
+                    'Configuración del stack Docker (dev + prod) con PostgreSQL, Gunicorn y Nginx.',
+                    'Sistema de notificaciones por email con cola de procesamiento y reintentos.',
+                    'Implementación de tests unitarios y de integración para Entregas y Core_Scheduler.',
+                ],
+                'resultados': [
+                    {'metrica': '12', 'label': 'Módulos integrados'},
+                    {'metrica': '28+', 'label': 'Tablas relacionales diseñadas'},
+                    {'metrica': '7', 'label': 'KPIs de fabricación en tiempo real'},
+                    {'metrica': '100%', 'label': 'Automatización stock ↔ ventas'},
+                ],
+                'aprendizajes': (
+                    'Aprendí a diseñar arquitecturas Django modulares escalables, aplicar el '
+                    'principio de separación de responsabilidades entre apps, e integrar HTMX '
+                    'para lograr UX fluida sin SPA. Trabajar en equipo de 3 desarrolladores me '
+                    'enseñó la importancia de convenciones de código, versionado riguroso y '
+                    'documentación técnica cruzada.'
+                ),
             },
+
             {
-                'nombre': 'Analizador de Remitos con IA',
-                'tecnologias': ['Python', 'Azure AI', 'HTMX'],
-                'descripcion': 'Herramienta de OCR y análisis automatizado de documentos para logística industrial.',
-                'imagen': 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800',
-                'link': '#'
+                'slug': 'agente-ia',
+                'nombre': 'Módulo Agente IA',
+                'subtitulo': 'Visión artificial + análisis estratégico con Claude',
+                'periodo': '2025 — Integrado a Sistema de Gestión',
+                'rol': 'Desarrollador de IA · Integración & Prompts',
+                'thumb_gradient': 'linear-gradient(135deg, #7c3aed 0%, #2563eb 100%)',
+                'tags_cortos': ['Claude IA', 'OCR', 'Django', 'Analytics'],
+                'descripcion_breve': (
+                    'Módulo inteligente que transforma el Sistema de Gestión en una herramienta '
+                    'proactiva. Automatiza la carga de remitos mediante visión artificial y genera '
+                    'análisis estratégicos cruzando datos de inventario, fabricación, pedidos y '
+                    'entregas con modelos Claude de Anthropic.'
+                ),
+                'problema': (
+                    'La carga manual de remitos físicos es tediosa y propensa a errores. Además, '
+                    'los módulos operativos generaban datos crudos sin una capa de inteligencia '
+                    'que los transforme en decisiones accionables.'
+                ),
+                'caracteristicas': [
+                    {'icono': 'bi-camera', 'titulo': 'OCR con Claude Vision', 'desc': 'Procesa fotos de remitos y extrae proveedor, fecha, productos, cantidades y vencimientos automáticamente.'},
+                    {'icono': 'bi-search-heart', 'titulo': 'Match inteligente', 'desc': 'Sugiere coincidencias en la base de datos para proveedores, clientes y productos existentes.'},
+                    {'icono': 'bi-clipboard-data', 'titulo': 'Resumen ejecutivo IA', 'desc': 'Genera un snapshot estratégico del estado de la fábrica cruzando métricas de todos los módulos.'},
+                    {'icono': 'bi-exclamation-triangle', 'titulo': 'Alertas críticas', 'desc': 'Detección automática de stock faltante, lotes próximos a vencer y demoras en pedidos.'},
+                    {'icono': 'bi-lightbulb', 'titulo': 'Sugerencias accionables', 'desc': 'Recomienda qué fabricar, qué comprar y a quién reclamar, detectando patrones ocultos.'},
+                ],
+                'tecnologias': [
+                    {'nombre': 'Claude Sonnet 4', 'icono': 'bi-robot'},
+                    {'nombre': 'Claude Vision', 'icono': 'bi-eye'},
+                    {'nombre': 'Anthropic API', 'icono': 'bi-cloud'},
+                    {'nombre': 'Django', 'icono': 'bi-filetype-py'},
+                    {'nombre': 'HTMX', 'icono': 'bi-arrow-left-right'},
+                    {'nombre': 'PostgreSQL', 'icono': 'bi-database'},
+                    {'nombre': 'Prompt Engineering', 'icono': 'bi-chat-square-text'},
+                ],
+                'demo_url': '#',
+                'repo_url': '#',
+                'aporte': [
+                    'Diseño de la arquitectura del módulo: servicios separados para OCR, analytics y análisis estratégico.',
+                    'Desarrollo de `ocr_service.py`: prompts especializados para visión artificial y algoritmo de match con BD.',
+                    'Implementación de `analytics_service.py`: motor de recolección de métricas y serialización del estado del sistema.',
+                    'Construcción de `analysis_service.py`: orquestador principal de la comunicación con Claude.',
+                    'Ingeniería de prompts contextual con reglas de negocio (estacionalidad, lógica de fábrica).',
+                    'Integración con los módulos Inventario, Fabricación, Pedidos y Entregas del sistema principal.',
+                ],
+                'resultados': [
+                    {'metrica': '3', 'label': 'Servicios especializados desacoplados'},
+                    {'metrica': '4', 'label': 'Módulos operativos integrados'},
+                    {'metrica': 'OCR', 'label': 'Automatización de carga de remitos'},
+                    {'metrica': 'IA', 'label': 'Decisiones accionables en tiempo real'},
+                ],
+                'aprendizajes': (
+                    'Aprendí a diseñar arquitecturas de servicios desacoplados para IA, aplicar '
+                    'ingeniería de prompts con contexto de negocio, y transformar datos operativos '
+                    'crudos en inteligencia accionable. La clave fue estructurar la comunicación '
+                    'con el LLM en capas (recolección → contextualización → análisis → acción).'
+                ),
             },
         ],
     }
