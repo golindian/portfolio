@@ -808,6 +808,18 @@ a:hover {
     font-size: 2.5rem;
 }
 
+.pm-demo-video {
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-radius: 14px;
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: contain;
+    margin-bottom: 1.2rem;
+    display: block;
+}
+
 .pm-actions {
     display: flex;
     gap: 0.8rem;

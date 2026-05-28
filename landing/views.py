@@ -144,6 +144,7 @@ def index(request):
                     'que del tamaño de los modelos. La modularidad (Planner / Executor / Critic) y la '
                     'evaluación continua son clave para evitar drift y garantizar mejora sostenida.'
                 ),
+                'video_filename': 'evosuwarm.mp4',
             },
             {
                 'slug': 'milac-cream',
@@ -207,12 +208,13 @@ def index(request):
                     'enseñó la importancia de convenciones de código, versionado riguroso y '
                     'documentación técnica cruzada.'
                 ),
+                'video_filename': 'milac-cream.mp4',
             },
 
             {
                 'slug': 'agente-ia',
-                'nombre': 'Módulo Agente IA',
-                'subtitulo': 'Visión artificial + análisis estratégico con Claude',
+                'nombre': 'Microservicio OCR-COOPER',
+                'subtitulo': 'Visión artificial + análisis estratégico con EVOSWARM & ANTHROPIC',
                 'periodo': '2025 — Integrado a Sistema de Gestión',
                 'rol': 'Desarrollador de IA · Integración & Prompts',
                 'thumb_gradient': 'linear-gradient(135deg, #7c3aed 0%, #2563eb 100%)',
@@ -221,7 +223,7 @@ def index(request):
                     'Módulo inteligente que transforma el Sistema de Gestión en una herramienta '
                     'proactiva. Automatiza la carga de remitos mediante visión artificial y genera '
                     'análisis estratégicos cruzando datos de inventario, fabricación, pedidos y '
-                    'entregas con modelos Claude de Anthropic.'
+                    'entregas con modelos Evoswarm & Anthropic.'
                 ),
                 'problema': (
                     'La carga manual de remitos físicos es tediosa y propensa a errores. Además, '
@@ -229,14 +231,15 @@ def index(request):
                     'que los transforme en decisiones accionables.'
                 ),
                 'caracteristicas': [
-                    {'icono': 'bi-camera', 'titulo': 'OCR con Claude Vision', 'desc': 'Procesa fotos de remitos y extrae proveedor, fecha, productos, cantidades y vencimientos automáticamente.'},
+                    {'icono': 'bi-camera', 'titulo': 'OCR con llama3.2-vision & Claude Vision', 'desc': 'Procesa fotos de remitos y extrae proveedor, fecha, productos, cantidades y vencimientos automáticamente.'},
                     {'icono': 'bi-search-heart', 'titulo': 'Match inteligente', 'desc': 'Sugiere coincidencias en la base de datos para proveedores, clientes y productos existentes.'},
                     {'icono': 'bi-clipboard-data', 'titulo': 'Resumen ejecutivo IA', 'desc': 'Genera un snapshot estratégico del estado de la fábrica cruzando métricas de todos los módulos.'},
                     {'icono': 'bi-exclamation-triangle', 'titulo': 'Alertas críticas', 'desc': 'Detección automática de stock faltante, lotes próximos a vencer y demoras en pedidos.'},
                     {'icono': 'bi-lightbulb', 'titulo': 'Sugerencias accionables', 'desc': 'Recomienda qué fabricar, qué comprar y a quién reclamar, detectando patrones ocultos.'},
                 ],
                 'tecnologias': [
-                    {'nombre': 'Claude Sonnet 4', 'icono': 'bi-robot'},
+                    {'nombre': 'llama3.2-vision', 'icono': 'bi-image'},
+                    {'nombre': 'Evoswarm', 'icono': 'bi-robot'},
                     {'nombre': 'Claude Vision', 'icono': 'bi-eye'},
                     {'nombre': 'Anthropic API', 'icono': 'bi-cloud'},
                     {'nombre': 'Django', 'icono': 'bi-filetype-py'},
@@ -250,7 +253,7 @@ def index(request):
                     'Diseño de la arquitectura del módulo: servicios separados para OCR, analytics y análisis estratégico.',
                     'Desarrollo de `ocr_service.py`: prompts especializados para visión artificial y algoritmo de match con BD.',
                     'Implementación de `analytics_service.py`: motor de recolección de métricas y serialización del estado del sistema.',
-                    'Construcción de `analysis_service.py`: orquestador principal de la comunicación con Claude.',
+                    'Construcción de `analysis_service.py`: orquestador principal de la comunicación con Evoswarm & Claude.',
                     'Ingeniería de prompts contextual con reglas de negocio (estacionalidad, lógica de fábrica).',
                     'Integración con los módulos Inventario, Fabricación, Pedidos y Entregas del sistema principal.',
                 ],
@@ -266,6 +269,7 @@ def index(request):
                     'crudos en inteligencia accionable. La clave fue estructurar la comunicación '
                     'con el LLM en capas (recolección → contextualización → análisis → acción).'
                 ),
+                'video_filename': 'OCR-COOPER.mp4',
             },
         ],
     }

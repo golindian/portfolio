@@ -1,3 +1,4 @@
+{% load static %}
 <div class="project-modal" id="modal-{{ p.slug }}" aria-hidden="true" role="dialog">
     <div class="project-modal-backdrop" data-close></div>
     <div class="project-modal-dialog" role="document">
@@ -55,10 +56,17 @@
             <!-- 5. Demo -->
             <section class="pm-section">
                 <h4><span class="pm-num">04</span> Capturas &amp; demo</h4>
+                {% if p.video_filename %}
+                <video class="pm-demo-video" id="video-{{ p.slug }}" controls width="100%">
+                    <source src="{% static 'videos/' %}{{ p.video_filename }}" type="video/mp4">
+                    Tu navegador no soporta el elemento de video.
+                </video>
+                {% else %}
                 <div class="pm-demo-placeholder">
                     <i class="bi bi-image"></i>
                     <span>Espacio reservado para captura / video del sistema</span>
                 </div>
+                {% endif %}
                 <div class="pm-actions">
                     <a href="{{ p.demo_url }}" class="pm-btn pm-btn-primary" target="_blank" rel="noopener">
                         <i class="bi bi-play-circle"></i> Ver demo
@@ -96,3 +104,28 @@
         </div>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('modal-{{ p.slug }}');
+    if (!modal) return;
+
+    const closeButton = modal.querySelector('.project-modal-close');
+    const backdrop = modal.querySelector('.project-modal-backdrop');
+    const video = document.getElementById('video-{{ p.slug }}');
+
+    function closeModal() {
+        if (video) {
+            video.pause();
+            video.currentTime = 0;
+        }
+    }
+
+    if (closeButton) {
+        closeButton.addEventListener('click', closeModal);
+    }
+    if (backdrop) {
+        backdrop.addEventListener('click', closeModal);
+    }
+});
+</script>
