@@ -144,8 +144,133 @@ def index(request):
                     'que del tamaño de los modelos. La modularidad (Planner / Executor / Critic) y la '
                     'evaluación continua son clave para evitar drift y garantizar mejora sostenida.'
                 ),
+                'video_filename': 'api.ecoswarm.mp4',
+            },
+
+            {
+                'slug': 'evo-ai',
+                'nombre': 'EVO-AI',
+                'subtitulo': 'Gateway SaaS gestionado para EvoSwarm',
+                'periodo': '2025 — En desarrollo',
+                'rol': 'Full Stack Developer · Backend & DevOps',
+                'thumb_gradient': 'linear-gradient(135deg, #6366f1 0%, #14b8a6 100%)',
+                'tags_cortos': ['Django', 'FastAPI', 'JWT', 'SaaS'],
+                'descripcion_breve': (
+                    'Puerta de acceso gestionada al sistema EvoSwarm. Plataforma SaaS que permite '
+                    'consumir EvoSwarm de forma segura mediante autenticación JWT, API keys, '
+                    'historial paginado, contextos persistentes y un dashboard administrativo '
+                    'con KPIs en tiempo real.'
+                ),
+                'problema': (
+                    'EvoSwarm necesitaba una interfaz centralizada, segura y administrable para '
+                    'su consumo en producción. No contaba con autenticación robusta, gestión de '
+                    'usuarios, historial ni capacidad de integraciones server-to-server.'
+                ),
+                'caracteristicas': [
+                    {'icono': 'bi-shield-lock', 'titulo': 'Auth JWT + API Keys', 'desc': 'Registro, login, refresh tokens y API keys con hashing SHA-256, rotación y rate-limiting.'},
+                    {'icono': 'bi-chat-square-dots', 'titulo': 'Panel de consultas', 'desc': 'Envío de prompts a EvoSwarm con respuestas en Markdown y metadatos (latencia, tokens, modelo).'},
+                    {'icono': 'bi-clock-history', 'titulo': 'Historial & export', 'desc': 'Listado paginado con filtros, descarga en Markdown y re-ejecución de consultas previas.'},
+                    {'icono': 'bi-bookmark-star', 'titulo': 'Contextos persistentes', 'desc': 'CRUD de contextos por usuario que se pre-penden a los prompts para mantener estado.'},
+                    {'icono': 'bi-speedometer2', 'titulo': 'Dashboard de KPIs', 'desc': 'Totales, métricas de 7 días, latencia promedio, tasa de éxito, top users y logs del sistema.'},
+                ],
+                'tecnologias': [
+                    {'nombre': 'Django', 'icono': 'bi-filetype-py'},
+                    {'nombre': 'FastAPI', 'icono': 'bi-lightning-charge'},
+                    {'nombre': 'PostgreSQL', 'icono': 'bi-database'},
+                    {'nombre': 'SQLAlchemy', 'icono': 'bi-link-45deg'},
+                    {'nombre': 'Alembic', 'icono': 'bi-arrow-repeat'},
+                    {'nombre': 'JWT', 'icono': 'bi-shield-check'},
+                    {'nombre': 'Docker Compose', 'icono': 'bi-boxes'},
+                    {'nombre': 'Gunicorn + Nginx', 'icono': 'bi-server'},
+                    {'nombre': 'httpx async', 'icono': 'bi-arrow-left-right'},
+                ],
+                'demo_url': '#',
+                'repo_url': '#',
+                'aporte': [
+                    'Diseño full-stack: frontend con Django (templates, sesiones, i18n) + backend API REST con FastAPI asíncrono.',
+                    'Implementación del módulo de seguridad: JWT con refresh tokens, API keys hasheadas con SHA-256 y rate-limiting.',
+                    'Desarrollo del cliente asíncrono `evoswarm_client.py` para comunicación HTTP con EvoSwarm.',
+                    'Estructura de routers FastAPI: auth, queries, history, store y api_keys con responsabilidades separadas.',
+                    'Modelado de BD con SQLAlchemy + migraciones versionadas con Alembic sobre PostgreSQL.',
+                    'Dockerización completa y guías de deploy (Docker Compose, systemd/Gunicorn+Nginx, PaaS).',
+                    'Sistema de métricas y KPIs administrativos para monitoreo de uso, latencia y tasa de éxito.',
+                ],
+                'resultados': [
+                    {'metrica': 'SaaS', 'label': 'Listo para producción e integraciones'},
+                    {'metrica': '5', 'label': 'Routers FastAPI desacoplados'},
+                    {'metrica': 'JWT', 'label': 'Auth + refresh + API keys server-to-server'},
+                    {'metrica': '100%', 'label': 'Async I/O con httpx + FastAPI'},
+                ],
+                'aprendizajes': (
+                    'Profundicé en arquitecturas híbridas Django + FastAPI, combinando lo mejor de '
+                    'ambos mundos: panel admin maduro y API asíncrona de alto rendimiento. Aprendí '
+                    'a diseñar sistemas SaaS seguros desde cero — autenticación multi-capa, '
+                    'rate-limiting, observabilidad y deploy reproducible con Docker.'
+                ),
                 'video_filename': 'evosuwarm.mp4',
             },
+
+            {
+                'slug': 'agente-ia',
+                'nombre': 'Microservicio OCR-COOPER',
+                'subtitulo': 'Visión artificial + análisis estratégico con EVOSWARM & ANTHROPIC',
+                'periodo': '2025 — Integrado a Sistema de Gestión',
+                'rol': 'Desarrollador de IA · Integración & Prompts',
+                'thumb_gradient': 'linear-gradient(135deg, #7c3aed 0%, #2563eb 100%)',
+                'tags_cortos': ['Claude IA', 'OCR', 'Django', 'Analytics'],
+                'descripcion_breve': (
+                    'Módulo inteligente que transforma el Sistema de Gestión en una herramienta '
+                    'proactiva. Automatiza la carga de remitos mediante visión artificial y genera '
+                    'análisis estratégicos cruzando datos de inventario, fabricación, pedidos y '
+                    'entregas con modelos Evoswarm & Anthropic.'
+                ),
+                'problema': (
+                    'La carga manual de remitos físicos es tediosa y propensa a errores. Además, '
+                    'los módulos operativos generaban datos crudos sin una capa de inteligencia '
+                    'que los transforme en decisiones accionables.'
+                ),
+                'caracteristicas': [
+                    {'icono': 'bi-camera', 'titulo': 'OCR con llama3.2-vision & Claude Vision', 'desc': 'Procesa fotos de remitos y extrae proveedor, fecha, productos, cantidades y vencimientos automáticamente.'},
+                    {'icono': 'bi-search-heart', 'titulo': 'Match inteligente', 'desc': 'Sugiere coincidencias en la base de datos para proveedores, clientes y productos existentes.'},
+                    {'icono': 'bi-clipboard-data', 'titulo': 'Resumen ejecutivo IA', 'desc': 'Genera un snapshot estratégico del estado de la fábrica cruzando métricas de todos los módulos.'},
+                    {'icono': 'bi-exclamation-triangle', 'titulo': 'Alertas críticas', 'desc': 'Detección automática de stock faltante, lotes próximos a vencer y demoras en pedidos.'},
+                    {'icono': 'bi-lightbulb', 'titulo': 'Sugerencias accionables', 'desc': 'Recomienda qué fabricar, qué comprar y a quién reclamar, detectando patrones ocultos.'},
+                ],
+                'tecnologias': [
+                    {'nombre': 'llama3.2-vision', 'icono': 'bi-image'},
+                    {'nombre': 'Evoswarm', 'icono': 'bi-robot'},
+                    {'nombre': 'Claude Vision', 'icono': 'bi-eye'},
+                    {'nombre': 'Anthropic API', 'icono': 'bi-cloud'},
+                    {'nombre': 'Django', 'icono': 'bi-filetype-py'},
+                    {'nombre': 'HTMX', 'icono': 'bi-arrow-left-right'},
+                    {'nombre': 'PostgreSQL', 'icono': 'bi-database'},
+                    {'nombre': 'Prompt Engineering', 'icono': 'bi-chat-square-text'},
+                ],
+                'demo_url': '#',
+                'repo_url': '#',
+                'aporte': [
+                    'Diseño de la arquitectura del módulo: servicios separados para OCR, analytics y análisis estratégico.',
+                    'Desarrollo de `ocr_service.py`: prompts especializados para visión artificial y algoritmo de match con BD.',
+                    'Implementación de `analytics_service.py`: motor de recolección de métricas y serialización del estado del sistema.',
+                    'Construcción de `analysis_service.py`: orquestador principal de la comunicación con Evoswarm & Claude.',
+                    'Ingeniería de prompts contextual con reglas de negocio (estacionalidad, lógica de fábrica).',
+                    'Integración con los módulos Inventario, Fabricación, Pedidos y Entregas del sistema principal.',
+                ],
+                'resultados': [
+                    {'metrica': '3', 'label': 'Servicios especializados desacoplados'},
+                    {'metrica': '4', 'label': 'Módulos operativos integrados'},
+                    {'metrica': 'OCR', 'label': 'Automatización de carga de remitos'},
+                    {'metrica': 'IA', 'label': 'Decisiones accionables en tiempo real'},
+                ],
+                'aprendizajes': (
+                    'Aprendí a diseñar arquitecturas de servicios desacoplados para IA, aplicar '
+                    'ingeniería de prompts con contexto de negocio, y transformar datos operativos '
+                    'crudos en inteligencia accionable. La clave fue estructurar la comunicación '
+                    'con el LLM en capas (recolección → contextualización → análisis → acción).'
+                ),
+                'video_filename': 'OCR-COOPER.mp4',
+            },
+
             {
                 'slug': 'milac-cream',
                 'nombre': 'Sistema Milac Cream',
@@ -209,67 +334,6 @@ def index(request):
                     'documentación técnica cruzada.'
                 ),
                 'video_filename': 'milac-cream.mp4',
-            },
-
-            {
-                'slug': 'agente-ia',
-                'nombre': 'Microservicio OCR-COOPER',
-                'subtitulo': 'Visión artificial + análisis estratégico con EVOSWARM & ANTHROPIC',
-                'periodo': '2025 — Integrado a Sistema de Gestión',
-                'rol': 'Desarrollador de IA · Integración & Prompts',
-                'thumb_gradient': 'linear-gradient(135deg, #7c3aed 0%, #2563eb 100%)',
-                'tags_cortos': ['Claude IA', 'OCR', 'Django', 'Analytics'],
-                'descripcion_breve': (
-                    'Módulo inteligente que transforma el Sistema de Gestión en una herramienta '
-                    'proactiva. Automatiza la carga de remitos mediante visión artificial y genera '
-                    'análisis estratégicos cruzando datos de inventario, fabricación, pedidos y '
-                    'entregas con modelos Evoswarm & Anthropic.'
-                ),
-                'problema': (
-                    'La carga manual de remitos físicos es tediosa y propensa a errores. Además, '
-                    'los módulos operativos generaban datos crudos sin una capa de inteligencia '
-                    'que los transforme en decisiones accionables.'
-                ),
-                'caracteristicas': [
-                    {'icono': 'bi-camera', 'titulo': 'OCR con llama3.2-vision & Claude Vision', 'desc': 'Procesa fotos de remitos y extrae proveedor, fecha, productos, cantidades y vencimientos automáticamente.'},
-                    {'icono': 'bi-search-heart', 'titulo': 'Match inteligente', 'desc': 'Sugiere coincidencias en la base de datos para proveedores, clientes y productos existentes.'},
-                    {'icono': 'bi-clipboard-data', 'titulo': 'Resumen ejecutivo IA', 'desc': 'Genera un snapshot estratégico del estado de la fábrica cruzando métricas de todos los módulos.'},
-                    {'icono': 'bi-exclamation-triangle', 'titulo': 'Alertas críticas', 'desc': 'Detección automática de stock faltante, lotes próximos a vencer y demoras en pedidos.'},
-                    {'icono': 'bi-lightbulb', 'titulo': 'Sugerencias accionables', 'desc': 'Recomienda qué fabricar, qué comprar y a quién reclamar, detectando patrones ocultos.'},
-                ],
-                'tecnologias': [
-                    {'nombre': 'llama3.2-vision', 'icono': 'bi-image'},
-                    {'nombre': 'Evoswarm', 'icono': 'bi-robot'},
-                    {'nombre': 'Claude Vision', 'icono': 'bi-eye'},
-                    {'nombre': 'Anthropic API', 'icono': 'bi-cloud'},
-                    {'nombre': 'Django', 'icono': 'bi-filetype-py'},
-                    {'nombre': 'HTMX', 'icono': 'bi-arrow-left-right'},
-                    {'nombre': 'PostgreSQL', 'icono': 'bi-database'},
-                    {'nombre': 'Prompt Engineering', 'icono': 'bi-chat-square-text'},
-                ],
-                'demo_url': '#',
-                'repo_url': '#',
-                'aporte': [
-                    'Diseño de la arquitectura del módulo: servicios separados para OCR, analytics y análisis estratégico.',
-                    'Desarrollo de `ocr_service.py`: prompts especializados para visión artificial y algoritmo de match con BD.',
-                    'Implementación de `analytics_service.py`: motor de recolección de métricas y serialización del estado del sistema.',
-                    'Construcción de `analysis_service.py`: orquestador principal de la comunicación con Evoswarm & Claude.',
-                    'Ingeniería de prompts contextual con reglas de negocio (estacionalidad, lógica de fábrica).',
-                    'Integración con los módulos Inventario, Fabricación, Pedidos y Entregas del sistema principal.',
-                ],
-                'resultados': [
-                    {'metrica': '3', 'label': 'Servicios especializados desacoplados'},
-                    {'metrica': '4', 'label': 'Módulos operativos integrados'},
-                    {'metrica': 'OCR', 'label': 'Automatización de carga de remitos'},
-                    {'metrica': 'IA', 'label': 'Decisiones accionables en tiempo real'},
-                ],
-                'aprendizajes': (
-                    'Aprendí a diseñar arquitecturas de servicios desacoplados para IA, aplicar '
-                    'ingeniería de prompts con contexto de negocio, y transformar datos operativos '
-                    'crudos en inteligencia accionable. La clave fue estructurar la comunicación '
-                    'con el LLM en capas (recolección → contextualización → análisis → acción).'
-                ),
-                'video_filename': 'OCR-COOPER.mp4',
             },
         ],
     }
