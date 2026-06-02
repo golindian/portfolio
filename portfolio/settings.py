@@ -4,8 +4,9 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-cambia-esta-clave-en-produccion'
-DEBUG = True
-ALLOWED_HOSTS = ['*']
+DEBUG = False
+ALLOWED_HOSTS = ['portfolio.onrender.com']
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
