@@ -336,4 +336,4 @@ def index(request):
             },
         ],
     }
-    return render(request, 'landing/index.html', context)
+    return render(request, 'index.html', context)
