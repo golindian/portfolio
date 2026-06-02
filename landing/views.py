@@ -270,7 +270,6 @@ def index(request):
                 ),
                 'video_filename': 'OCR-COOPER.mp4',
             },
-
             {
                 'slug': 'milac-cream',
                 'nombre': 'Sistema Milac Cream',
