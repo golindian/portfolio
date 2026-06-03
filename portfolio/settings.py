@@ -5,7 +5,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-cambia-esta-clave-en-produccion'
 DEBUG = False
-ALLOWED_HOSTS = ['portfolio.onrender.com']
+ALLOWED_HOSTS = ['portfolio-yrko.onrender.com']
+
 
 
 INSTALLED_APPS = [
