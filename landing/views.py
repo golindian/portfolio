@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import ContactForm
@@ -5,8 +7,29 @@ from .forms import ContactForm
 def index(request):
     form = ContactForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
-        # Aquí podrías enviar email con send_mail
-        messages.success(request, '¡Gracias! Tu mensaje fue enviado correctamente.')
+        nombre = form.cleaned_data['nombre']
+        email = form.cleaned_data['email']
+        mensaje = form.cleaned_data['mensaje']
+
+        asunto = f'Nuevo mensaje desde el portfolio: {nombre}'
+        cuerpo = (
+            f'Nombre: {nombre}\n'
+            f'Email: {email}\n\n'
+            f'Mensaje:\n{mensaje}'
+        )
+
+        try:
+            send_mail(
+                asunto,
+                cuerpo,
+                settings.DEFAULT_FROM_EMAIL,
+                [settings.EMAIL_HOST_USER],
+                reply_to=[email],
+            )
+            messages.success(request, '¡Gracias! Tu mensaje fue enviado correctamente.')
+        except Exception:
+            messages.error(request, 'No se pudo enviar el mensaje. Revisa la configuración de correo en Render.')
+
         return redirect('landing:index')
 
     context = {
@@ -123,7 +146,7 @@ def index(request):
                     {'nombre': 'Docker', 'icono': 'bi-boxes'},
                     {'nombre': 'Kubernetes', 'icono': 'bi-hdd-network'},
                 ],
-                'demo_url': '#',
+                'demo_url': 'https://evo-ai-frontend-dti6.onrender.com/',
                 'repo_url': '#',
                 'aporte': [
                     'Diseño de la arquitectura modular (Orquestador + 5 modelos especializados).',
@@ -184,7 +207,7 @@ def index(request):
                     {'nombre': 'Gunicorn + Nginx', 'icono': 'bi-server'},
                     {'nombre': 'httpx async', 'icono': 'bi-arrow-left-right'},
                 ],
-                'demo_url': '#',
+                'demo_url': 'https://evo-ai-frontend-dti6.onrender.com/',
                 'repo_url': '#',
                 'aporte': [
                     'Diseño full-stack: frontend con Django (templates, sesiones, i18n) + backend API REST con FastAPI asíncrono.',
