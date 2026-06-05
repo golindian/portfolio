@@ -75,11 +75,11 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.environ.get('EMAIL_HOST', 'smtp.gmail.com')
 EMAIL_PORT = int(os.environ.get('EMAIL_PORT', 587))
-EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', 'True') == 'True'
+EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', 'True').strip().lower() in ['true', '1', 'yes']
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', 'gasparirrazabal@gmail.com')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '').strip()
 DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', EMAIL_HOST_USER)
 
 # Optional fallback for local development
-if os.environ.get('DJANGO_EMAIL_BACKEND') == 'console':
+if os.environ.get('DJANGO_EMAIL_BACKEND', '').strip().lower() == 'console':
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

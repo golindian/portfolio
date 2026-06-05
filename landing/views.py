@@ -1,8 +1,12 @@
+import logging
+
 from django.conf import settings
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import ContactForm
+
+logger = logging.getLogger(__name__)
 
 def index(request):
     form = ContactForm(request.POST or None)
@@ -27,8 +31,12 @@ def index(request):
                 reply_to=[email],
             )
             messages.success(request, '¡Gracias! Tu mensaje fue enviado correctamente.')
-        except Exception:
-            messages.error(request, 'No se pudo enviar el mensaje. Revisa la configuración de correo en Render.')
+        except Exception as e:
+            logger.exception('Error al enviar email de contacto: %s', e)
+            messages.error(
+                request,
+                'No se pudo enviar el mensaje. Verifica en Render: EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, EMAIL_USE_TLS y DEFAULT_FROM_EMAIL.'
+            )
 
         return redirect('landing:index')
 
