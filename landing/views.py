@@ -1,7 +1,7 @@
 import logging
 
 from django.conf import settings
-from django.core.mail import send_mail
+from django.core.mail import EmailMessage
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import ContactForm
@@ -23,13 +23,14 @@ def index(request):
         )
 
         try:
-            send_mail(
+            mensaje_email = EmailMessage(
                 asunto,
                 cuerpo,
                 settings.DEFAULT_FROM_EMAIL,
                 [settings.EMAIL_HOST_USER],
                 reply_to=[email],
             )
+            mensaje_email.send(fail_silently=False)
             messages.success(request, '¡Gracias! Tu mensaje fue enviado correctamente.')
         except Exception as e:
             logger.exception('Error al enviar email de contacto: %s', e)
