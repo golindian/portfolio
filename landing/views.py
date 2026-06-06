@@ -239,7 +239,7 @@ def index(request):
                     'a diseñar sistemas SaaS seguros desde cero — autenticación multi-capa, '
                     'rate-limiting, observabilidad y deploy reproducible con Docker.'
                 ),
-                'video_filename': 'evosuwarm.mp4',
+                'video_filename': 'Evoswarm.mp4',
             },
 
             {
