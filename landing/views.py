@@ -176,7 +176,7 @@ def index(request):
                     'que del tamaño de los modelos. La modularidad (Planner / Executor / Critic) y la '
                     'evaluación continua son clave para evitar drift y garantizar mejora sostenida.'
                 ),
-                'video_filename': 'api.ecoswarm.mp4',
+                'video_filename': 'Evoswarm.mp4',
             },
 
             {
@@ -239,7 +239,7 @@ def index(request):
                     'a diseñar sistemas SaaS seguros desde cero — autenticación multi-capa, '
                     'rate-limiting, observabilidad y deploy reproducible con Docker.'
                 ),
-                'video_filename': 'Evoswarm.mp4',
+                'video_filename': 'evosuwarm.mp4',
             },
 
             {
