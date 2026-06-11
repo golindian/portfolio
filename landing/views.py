@@ -340,8 +340,8 @@ def index(request):
                     {'nombre': 'django-simple-history', 'icono': 'bi-clock-history'},
                     {'nombre': 'Supervisor / systemd', 'icono': 'bi-gear-wide-connected'},
                 ],
-                'demo_url': '#',
-                'repo_url': 'https://gitlab.com/golindian/sistema-milac-cream.git',
+                'demo_url': 'https://sistema-milac-cream-demo.onrender.com',
+                'repo_url': '#',
                 'aporte': [
                     'Diseño de modelos de Inventario con stock por lote, trazabilidad y extracciones automáticas.',
                     'Implementación del módulo Pedidos: CRUD, dashboard con KPIs y creación automática de stock al recibir.',
