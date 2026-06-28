@@ -241,6 +241,68 @@ def index(request):
                 ),
                 'video_filename': 'evosuwarm.mp4',
             },
+            {
+                'slug': 'el-indio-aires',
+                'nombre': 'El Indio Aires',
+                'subtitulo': 'Showroom digital + analíticas a medida',
+                'periodo': '2025 — Plataforma oficial activa',
+                'rol': 'Full Stack Developer · DevOps',
+                'thumb_gradient': 'linear-gradient(135deg, #0891b2 0%, #1e3a8a 100%)',
+                'tags_cortos': ['Django', 'Docker', 'Cloudflare', 'SEO'],
+                'descripcion_breve': (
+                    'Plataforma web oficial para El Indio Aires (especialista en climatización). '
+                    'Showroom digital con catálogo, servicios y galería, integrado a un motor de '
+                    'analíticas interno —sin Google Analytics ni scripts de terceros— y desplegado '
+                    'mediante Docker + Cloudflare Tunnel sin IP fija ni puertos abiertos.'
+                ),
+                'problema': (
+                    'El negocio necesitaba presencia digital profesional, seguimiento del '
+                    'comportamiento del usuario sin comprometer privacidad ni velocidad, y un '
+                    'deploy seguro y económico sin infraestructura de servidor tradicional.'
+                ),
+                'caracteristicas': [
+                    {'icono': 'bi-shop', 'titulo': 'Showroom digital', 'desc': 'Home, catálogo de equipos (split / centrales / industriales), servicios y galería con lightbox.'},
+                    {'icono': 'bi-bar-chart-line', 'titulo': 'Analytics nativo', 'desc': 'Middleware Django registra visitas (ruta, IP, UA, referer) excluyendo admin y estáticos.'},
+                    {'icono': 'bi-cursor', 'titulo': 'Click tracking async', 'desc': 'Vanilla JS + Fetch API capturan clicks en CTAs (WhatsApp, contacto) y los envían al backend.'},
+                    {'icono': 'bi-shield-check', 'titulo': 'Tunnel seguro', 'desc': 'Cloudflare Tunnel expone la app sin abrir puertos ni necesitar IP fija. SSL gestionado.'},
+                    {'icono': 'bi-search', 'titulo': 'SEO local optimizado', 'desc': 'Schema.org structured data, meta descriptions, robots.txt y sitemap.xml dinámicos.'},
+                ],
+                'tecnologias': [
+                    {'nombre': 'Django', 'icono': 'bi-filetype-py'},
+                    {'nombre': 'PostgreSQL 16', 'icono': 'bi-database'},
+                    {'nombre': 'Gunicorn', 'icono': 'bi-server'},
+                    {'nombre': 'Bootstrap', 'icono': 'bi-bootstrap'},
+                    {'nombre': 'Vanilla JS', 'icono': 'bi-filetype-js'},
+                    {'nombre': 'Docker Compose', 'icono': 'bi-boxes'},
+                    {'nombre': 'Cloudflare Tunnel', 'icono': 'bi-cloud-arrow-up'},
+                    {'nombre': 'Cloudflare DNS/SSL', 'icono': 'bi-shield-lock'},
+                ],
+                'demo_url': '#',
+                'repo_url': '#',
+                'aporte': [
+                    'Diseño completo del showroom (Home, Productos, Servicios, Galería, Contacto) con identidad serrana y CTAs.',
+                    'Desarrollo del módulo `analytics`: modelos, AnalyticsMiddleware y endpoints REST para click tracking.',
+                    'Implementación del frontend tracker en Vanilla JS con Fetch API asíncrono para eventos críticos.',
+                    'Panel de Django Admin con resúmenes estadísticos: páginas y clicks más populares.',
+                    'Orquestación Docker Compose con 3 servicios: `web` (Django+Gunicorn), `db` (PostgreSQL), `tunnel` (cloudflared).',
+                    'Configuración de Cloudflare Tunnel para exposición segura sin IP fija ni apertura de puertos.',
+                    'SEO local con Schema.org, sitemap.xml/robots.txt dinámicos y meta tags optimizados por vista.',
+                    'Modo oscuro persistente con localStorage y estrategia de Rolling Re-deployment para zero-downtime.',
+                ],
+                'resultados': [
+                    {'metrica': '0', 'label': 'Scripts de terceros (privacidad total)'},
+                    {'metrica': '3', 'label': 'Contenedores Docker orquestados'},
+                    {'metrica': 'SEO+', 'label': 'Indexación local optimizada'},
+                    {'metrica': '$0', 'label': 'Costo de IP fija / hosting tradicional'},
+                ],
+                'aprendizajes': (
+                    'Aprendí que la privacidad y el rendimiento se logran eliminando dependencias '
+                    'innecesarias: construir analíticas propias con Django middleware fue más '
+                    'simple y eficiente que integrar GA. Cloudflare Tunnel demostró ser una '
+                    'solución revolucionaria para exponer apps domésticas sin costos ni riesgos.'
+                ),
+                'video_filename': 'elindioaires.mp4',
+            },
 
             {
                 'slug': 'agente-ia',
